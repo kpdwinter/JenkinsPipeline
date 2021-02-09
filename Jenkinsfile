@@ -30,7 +30,7 @@ pipeline {
                 stage('Test On Linux') {
                     agent any
                     steps {
-                        mvn 'clean verify -DskipUTs=true'
+                        sh 'mvn clean verify -DskipUTs=true'
                     }
                     post {
                         always {
@@ -40,7 +40,6 @@ pipeline {
                 }
             }
         }
-        }
 
         stage('Deploy') {
             steps {
@@ -48,5 +47,6 @@ pipeline {
             }
         }
     }
+}
 
 
