@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Run Tests') {
             parallel {
-                stage('Test On Windows') {
+                stage('Surefire Unit Tests...') {
                     agent any
                     steps {
                         sh 'mvn clean test'
@@ -27,7 +27,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Test On Linux') {
+                stage('Failsafe integration tests...') {
                     agent any
                     steps {
                         sh 'mvn clean verify -DskipUTs=true'
