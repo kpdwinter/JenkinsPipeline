@@ -30,9 +30,7 @@ pipeline {
                     }
                 }
                 stage('Test On Linux') {
-                    agent {
-                        any
-                    }
+                    agent any
                     steps {
                         mvn 'clean verify -DskipUTs=true'
                     }
