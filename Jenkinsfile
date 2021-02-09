@@ -17,9 +17,7 @@ pipeline {
         stage('Run Tests') {
             parallel {
                 stage('Test On Windows') {
-                    agent {
-                        any
-                    }
+                    agent any
                     steps {
                         sh 'mvn clean test'
                     }
