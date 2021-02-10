@@ -7,7 +7,7 @@ pipeline {
             sh 'echo "Jenkins Step: Checkout.. ..."'
             }
         }
-        stage('Maven compiles and tests) {
+        stage('Maven compiles and tests') {
             echo 'Jenkins stage: Unit tests...'
             steps {
                 echo 'Jenkins Step: Unit tests...'
