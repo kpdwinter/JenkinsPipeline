@@ -1,34 +1,25 @@
 pipeline {
     agent any
     stages {
-        stage('Jenkins: Checkout..') {
+        stage('Jenkins: Unit Tests') {
             steps {
-                echo "Jenkins: Checkout.. ..."
-            }
-        }
-        stage('Maven compiles and tests') {
-            steps {
-                echo 'Jenkins Step: Unit tests...'
                 sh 'mvn verify -DskipITs=true'
-
-                echo 'Jenkins Step: Integration tests...'
-                sh 'mvn verify -DskipUTs=true'
             }
         }
-        stage('Deploy') {
+        stage('Jenkins: Integration Tests') {
             steps {
-                echo 'Jenkins stage: Deploy...'
-                echo "Jenkins Step: Project ready for deployment ..."
+                sh 'mvn verify -DskipUTs=true'
             }
         }
     }
     post {
-        always {
-            echo 'Cucumber reports...'
-            cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+        always
+//         echo 'Cucumber reports...'
+//         cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
         }
         success {
-            echo 'I succeeded!'
+            echo 'Successful test email notification email sent.'
+            emailext body: 'This is an email notification from Kevin's test project', subject: 'Email notification from Kevin\'s test project', to: 'kpdwinter@hotmail.com'
         }
         unstable {
             echo 'I am unstable :/'
