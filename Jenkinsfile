@@ -3,22 +3,22 @@ pipeline {
     stages {
         stage('Jenkins: Checkout..') {
             steps {
-                sh 'echo "Jenkins: Checkout.. ..."'
+                echo "Jenkins: Checkout.. ..."
             }
         }
         stage('Maven compiles and tests') {
             steps {
                 echo 'Jenkins Step: Unit tests...'
-                sh 'mvn verify - DskipITs = true'
+                sh 'mvn verify -DskipITs=true'
 
                 echo 'Jenkins Step: Integration tests...'
-                sh 'mvn verify - DskipUTs = true'
+                sh 'mvn verify -DskipUTs=true'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Jenkins stage: Deploy...'
-                sh 'echo "Jenkins Step: Project ready for deployment ..."'
+                echo "Jenkins Step: Project ready for deployment ..."
             }
         }
     }
