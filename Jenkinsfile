@@ -2,26 +2,23 @@ pipeline {
     agent any
     stages {
         stage('Jenkins: Checkout..') {
-            sh 'echo "Jenkins Stage: Checkout.. ..."'
             steps {
-                sh 'echo "Jenkins Step: Checkout.. ..."'
+                sh 'echo "Jenkins: Checkout.. ..."'
             }
         }
         stage('Maven compiles and tests') {
-            echo 'Jenkins stage: Unit tests...'
             steps {
                 echo 'Jenkins Step: Unit tests...'
                 sh 'mvn verify - DskipITs = true'
-            }
-            steps {
+
                 echo 'Jenkins Step: Integration tests...'
                 sh 'mvn verify - DskipUTs = true'
             }
-            stage('Deploy') {
+        }
+        stage('Deploy') {
+            steps {
                 echo 'Jenkins stage: Deploy...'
-                steps {
-                    sh 'echo "Jenkins Step: Project ready for deployment ..."'
-                }
+                sh 'echo "Jenkins Step: Project ready for deployment ..."'
             }
         }
         post {
