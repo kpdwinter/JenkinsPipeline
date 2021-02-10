@@ -18,9 +18,10 @@ pipeline {
 //         cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
         }
         success {
-            echo 'Successful test email notification email sent.'
-            emailext body: 'This is an email notification from Kevin's test project', subject: 'Email notification from Kevin\'s test project', to: 'kpdwinter@hotmail.com'
+            echo 'email notification...'
+            emailext body: 'KW test notification', subject: 'Email notification from Kevin', to: 'kpdwinter@hotmail.com'
         }
+            
         unstable {
             echo 'I am unstable :/'
         }
@@ -31,4 +32,3 @@ pipeline {
             echo 'Things were different before...'
         }
     }
-}
