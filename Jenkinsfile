@@ -13,15 +13,15 @@ pipeline {
         }
     }
     post {
-        always
-//         echo 'Cucumber reports...'
-//         cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+        always{
+            echo 'Cucumber reports...'
+//          cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
         }
         success {
             echo 'email notification...'
             emailext body: 'KW test notification', subject: 'Email notification from Kevin', to: 'kpdwinter@hotmail.com'
         }
-            
+
         unstable {
             echo 'I am unstable :/'
         }
