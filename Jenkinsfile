@@ -19,7 +19,7 @@ pipeline {
         }
         success {
             echo 'Jenkins job successful - sending email notification.'
-            emailext body: 'Jenkins job success', "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed OK",
+            emailext body: "Jenkins job success. Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed OK",
                     subject: 'Jenkins job successful',
                     to: 'kpdwinter@hotmail.com'
 
