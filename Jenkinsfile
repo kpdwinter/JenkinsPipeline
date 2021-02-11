@@ -21,7 +21,8 @@ pipeline {
             echo 'Jenkins job successful - sending email notification.'
             emailext body: "Jenkins job success. Job '${env.JOB_NAME}[${env.BUILD_NUMBER}]' completed OK.",
                     subject: 'Jenkins CI job successfull',
-                    to: 'kpdwinter@hotmail.com'
+                    to: 'kpdwinter@hotmail.com',
+                    attachmentsPattern: '**/junitReportFile.html'
         }
         failure {
             echo 'Jenkins job failure - sending email notification.'
@@ -40,6 +41,7 @@ pipeline {
             emailext body: "Jenkins job changed. Job '${env.JOB_NAME}[${env.BUILD_NUMBER}]'changed.",
                     subject: 'Jenkins CI job changed',
                     to: 'kpdwinter@hotmail.com'
+
         }
     }
 }
