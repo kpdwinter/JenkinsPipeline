@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'master' }
     stages {
         stage('Jenkins: Unit Tests') {
             steps {
@@ -18,19 +18,29 @@ pipeline {
 //          cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
         }
         success {
-            echo 'email notification...'
-            emailext body: 'KW test notification', "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", to: 'kpdwinter@hotmail.com'
+            echo 'Jenkins job successful - sending email notification.'
+            emailext body: 'Jenkins job success', "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed OK",
+                    subject: 'Jenkins job successful'
+                    to: 'kpdwinter@hotmail.com'
 
         }
-
         unstable {
-            echo 'I am unstable :/'
+            echo 'Jenkins job unstable - sending email notification.'
+            emailext body: 'Jenkins job unstable', "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' unstable",
+                    subject: 'Jenkins job unstable'
+                    to: 'kpdwinter@hotmail.com'
         }
         failure {
-            echo 'I failed :('
+            echo 'Jenkins job failure - sending email notification.'
+            emailext body: 'Jenkind job unstable', "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failure",
+                    subject: 'Jenkins job failure - sending email notification'
+                    to: 'kpdwinter@hotmail.com'
         }
         changed {
-            echo 'Things were different before...'
+            echo 'Jenkins job changed - sending email notification.'
+            emailext body: 'Jenkind job unstable', "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' changed",
+                    subject: 'Jenkins job changed'
+                    to: 'kpdwinter@hotmail.com'
         }
     }
 }
