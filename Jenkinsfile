@@ -19,7 +19,8 @@ pipeline {
         }
         success {
             echo 'email notification...'
-            emailext body: 'KW test notification', subject: 'Email notification from Kevin', to: 'kpdwinter@hotmail.com'
+            emailext body: 'KW test notification', "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", to: 'kpdwinter@hotmail.com'
+
         }
 
         unstable {
