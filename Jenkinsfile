@@ -19,27 +19,8 @@ pipeline {
         }
         success {
             echo 'Jenkins job successful - sending email notification.'
-            emailext body: "Jenkins job success. Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed OK",
-                    subject: 'Jenkins job successful',
-                    to: 'kpdwinter@hotmail.com'
-
-        }
-        unstable {
-            echo 'Jenkins job unstable - sending email notification.'
-            emailext body: "Jenkins job success. Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed OK",
-                    subject: 'Jenkins job unstable',
-                    to: 'kpdwinter@hotmail.com'
-        }
-        failure {
-            echo 'Jenkins job failure - sending email notification.'
-            emailext body: "Jenkins job success. Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed OK",
-                    subject: 'Jenkins job failure - sending email notification',
-                    to: 'kpdwinter@hotmail.com'
-        }
-        changed {
-            echo 'Jenkins job changed - sending email notification.'
-            emailext body: "Jenkins job success. Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed OK",
-                    subject: 'Jenkins job changed',
+            emailext body: 'Jenkins job success. Job \'${env.JOB_NAME}\' completed OK.',
+                    subject: 'Test failed',
                     to: 'kpdwinter@hotmail.com'
         }
     }
